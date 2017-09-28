@@ -29,7 +29,7 @@ tags: App开发
 <li><a href="http://www.tuicool.com/articles/EvEZzqe" target="_blank">PermissionDemo：Android M (6.0) 权限申请研究</a></li>
 <li><a href="http://man.linuxde.net/htpasswd" target="_blank">htpasswd命令</a></li>
 <li><a href="http://www.cnblogs.com/xudong-bupt/p/6079849.html" target="_blank">linux shell 多线程执行程序</a></li>
-<li><a href="" target="_blank"></a></li>
+<li><a href="https://imsun.net/posts/gitment-introduction/" target="_blank">Gitment：使用 GitHub Issues 搭建评论系统</a></li>
 </ul>
 
 <hr>
