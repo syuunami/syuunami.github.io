@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>(转)bootanimation分析 | potosu</title>
+  <title>Java编程思想(第四版) | potosu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[转载自Android深度探索卷2]bootanimation.zip文件中会有一个desc.txt文件和若干个类似part0,part1的目录.其中desc.txt文件是必须的.而part0,part1这样的目录至少要有一个,多者不限.Android系统读取part0,part1中的静态图像,并按照一定的显示规律和频率产生动画效果,而描述这些信息的就是desc.txt.desc.txt规则:[w">
-<meta name="keywords" content="Rom开发">
+  <meta name="description" content="第1章  对象导论   OOP的五个特征:  1）万物皆对象。  2) 程序是对象的集合，它们通过发送信息来告知彼此所要做的。  3) 每个对象都有自己的由其它对象所构成的存储。  4) 每个对象都有类型。  5) 某一特定类型的所有对象都可以接收同样的信息。">
+<meta name="keywords" content="读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(转)bootanimation分析">
-<meta property="og:url" content="http://yoursite.com/2017/09/28/转-bootanimation分析/index.html">
+<meta property="og:title" content="Java编程思想(第四版)">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/Java编程思想-第四版/index.html">
 <meta property="og:site_name" content="potosu">
-<meta property="og:description" content="[转载自Android深度探索卷2]bootanimation.zip文件中会有一个desc.txt文件和若干个类似part0,part1的目录.其中desc.txt文件是必须的.而part0,part1这样的目录至少要有一个,多者不限.Android系统读取part0,part1中的静态图像,并按照一定的显示规律和频率产生动画效果,而描述这些信息的就是desc.txt.desc.txt规则:[w">
-<meta property="og:updated_time" content="2017-09-28T02:52:11.407Z">
+<meta property="og:description" content="第1章  对象导论   OOP的五个特征:  1）万物皆对象。  2) 程序是对象的集合，它们通过发送信息来告知彼此所要做的。  3) 每个对象都有自己的由其它对象所构成的存储。  4) 每个对象都有类型。  5) 某一特定类型的所有对象都可以接收同样的信息。">
+<meta property="og:updated_time" content="2017-10-09T01:40:10.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(转)bootanimation分析">
-<meta name="twitter:description" content="[转载自Android深度探索卷2]bootanimation.zip文件中会有一个desc.txt文件和若干个类似part0,part1的目录.其中desc.txt文件是必须的.而part0,part1这样的目录至少要有一个,多者不限.Android系统读取part0,part1中的静态图像,并按照一定的显示规律和频率产生动画效果,而描述这些信息的就是desc.txt.desc.txt规则:[w">
+<meta name="twitter:title" content="Java编程思想(第四版)">
+<meta name="twitter:description" content="第1章  对象导论   OOP的五个特征:  1）万物皆对象。  2) 程序是对象的集合，它们通过发送信息来告知彼此所要做的。  3) 每个对象都有自己的由其它对象所构成的存储。  4) 每个对象都有类型。  5) 某一特定类型的所有对象都可以接收同样的信息。">
   
     <link rel="alternative" href="/atom.xml" title="potosu" type="application/atom+xml">
   
@@ -158,28 +158,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-转-bootanimation分析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java编程思想-第四版" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      (转)bootanimation分析
+      Java编程思想(第四版)
     </h1>
   
 
         
-        <a href="/2017/09/28/转-bootanimation分析/" class="archive-article-date">
-  	<time datetime="2017-09-28T02:51:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+        <a href="/2017/10/09/Java编程思想-第四版/" class="archive-article-date">
+  	<time datetime="2017-10-09T01:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[转载自Android深度探索卷2]<br>bootanimation.zip文件中会有一个desc.txt文件和若干个类似part0,part1的目录.其中desc.txt文件是必须的.而part0,part1这样的目录至少要有一个,多者不限.Android系统读取part0,part1中的静态图像,并按照一定的显示规律和频率产生动画效果,而描述这些信息的就是desc.txt.<br>desc.txt规则:<br>[width] [height] [frame-rate]<br>p [loop] [pause] [folder]<br>p [loop] [pause] [folder]</p>
-<p>width:动画播放的宽度<br>height:动画播放的高度<br>frame-rate:每秒播放的帧数.尽管该值没有要求具体的范围,但最好不要超过30,否则Android设备可能由于耗费大量的CPU资源处理开机动画造成开机缓慢,<br>loop:当前part动画循环次数.<br>pause:当前part动画播放完后暂停的帧数.<br>folder:当前part动画对应的静态图像文件存储的目录名称.<br>对于width和height要注意的是如果width和height大于当前Android设备的分辨率,则以当前Android设备的分辨率为准,也就是说动画会尽量充满整个屏幕</p>
+        <h3>第1章  对象导论</h3>
+
+<ul>
+<li>OOP的五个特征:<br>  1）万物皆对象。<br>  2) 程序是对象的集合，它们通过发送信息来告知彼此所要做的。<br>  3) 每个对象都有自己的由其它对象所构成的存储。<br>  4) 每个对象都有类型。<br>  5) 某一特定类型的所有对象都可以接收同样的信息。</li>
+</ul>
 
       
 
@@ -214,7 +217,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Rom开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		
 		</ul>
@@ -270,7 +273,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/28/转-bootanimation分析/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/Java编程思想-第四版/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -284,18 +287,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/28/Android-碎片知识/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android 碎片知识
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/28/SystemUI和NavigationBar/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SystemUI和NavigationBar</div>
+    <a href="/2017/10/09/计算机术语/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机术语</div>
       <i class="icon-circle-right"></i>
     </a>
   

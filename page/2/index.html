@@ -155,6 +155,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-转-bootanimation分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/28/转-bootanimation分析/">(转)bootanimation分析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/28/转-bootanimation分析/" class="archive-article-date">
+  	<time datetime="2017-09-28T02:51:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[转载自Android深度探索卷2]<br>bootanimation.zip文件中会有一个desc.txt文件和若干个类似part0,part1的目录.其中desc.txt文件是必须的.而part0,part1这样的目录至少要有一个,多者不限.Android系统读取part0,part1中的静态图像,并按照一定的显示规律和频率产生动画效果,而描述这些信息的就是desc.txt.<br>desc.txt规则:<br>[width] [height] [frame-rate]<br>p [loop] [pause] [folder]<br>p [loop] [pause] [folder]</p>
+<p>width:动画播放的宽度<br>height:动画播放的高度<br>frame-rate:每秒播放的帧数.尽管该值没有要求具体的范围,但最好不要超过30,否则Android设备可能由于耗费大量的CPU资源处理开机动画造成开机缓慢,<br>loop:当前part动画循环次数.<br>pause:当前part动画播放完后暂停的帧数.<br>folder:当前part动画对应的静态图像文件存储的目录名称.<br>对于width和height要注意的是如果width和height大于当前Android设备的分辨率,则以当前Android设备的分辨率为准,也就是说动画会尽量充满整个屏幕</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Rom开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/28/转-bootanimation分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SystemUI和NavigationBar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -340,6 +415,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
