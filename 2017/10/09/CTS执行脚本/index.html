@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ActivityManager | potosu</title>
+  <title>CTS执行脚本 | potosu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="public class ActivityManagerextends Objectjava.lang.Object↳android.app.ActivityManager这个类主要负责提供activities,services和包含的process的信息，并且与之交互．这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．大">
-<meta name="keywords" content="Android源码分析">
+  <meta name="description" content="123456789101112131415161718192021222324252627#!/bin/sh#可以用来减少工作量,请放在android-cts-media的根目录下echo &quot;start copy media...&quot;for id in $@do&amp;#123;	echo &quot;copy media to $id&quot;        source copy_media.sh all -s $id">
+<meta name="keywords" content="脚本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ActivityManager">
-<meta property="og:url" content="http://yoursite.com/2017/09/28/ActivityManager/index.html">
+<meta property="og:title" content="CTS执行脚本">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/CTS执行脚本/index.html">
 <meta property="og:site_name" content="potosu">
-<meta property="og:description" content="public class ActivityManagerextends Objectjava.lang.Object↳android.app.ActivityManager这个类主要负责提供activities,services和包含的process的信息，并且与之交互．这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．大">
-<meta property="og:updated_time" content="2017-09-28T03:58:56.406Z">
+<meta property="og:description" content="123456789101112131415161718192021222324252627#!/bin/sh#可以用来减少工作量,请放在android-cts-media的根目录下echo &quot;start copy media...&quot;for id in $@do&amp;#123;	echo &quot;copy media to $id&quot;        source copy_media.sh all -s $id">
+<meta property="og:updated_time" content="2017-10-09T01:06:45.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ActivityManager">
-<meta name="twitter:description" content="public class ActivityManagerextends Objectjava.lang.Object↳android.app.ActivityManager这个类主要负责提供activities,services和包含的process的信息，并且与之交互．这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．大">
+<meta name="twitter:title" content="CTS执行脚本">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627#!/bin/sh#可以用来减少工作量,请放在android-cts-media的根目录下echo &quot;start copy media...&quot;for id in $@do&amp;#123;	echo &quot;copy media to $id&quot;        source copy_media.sh all -s $id">
   
     <link rel="alternative" href="/atom.xml" title="potosu" type="application/atom+xml">
   
@@ -158,71 +158,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ActivityManager" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CTS执行脚本" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ActivityManager
+      CTS执行脚本
     </h1>
   
 
         
-        <a href="/2017/09/28/ActivityManager/" class="archive-article-date">
-  	<time datetime="2017-09-28T03:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+        <a href="/2017/10/09/CTS执行脚本/" class="archive-article-date">
+  	<time datetime="2017-10-09T01:04:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>public class ActivityManager<br>extends Object<br>java.lang.Object<br>↳android.app.ActivityManager<br>这个类主要负责提供activities,services和包含的process的信息，并且与之交互．<br>这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．<br>大多数应用开发者并不是必须要使用这个类．然而，有一小部分方法被广泛使用．举个例子，isLowRamDevice()可以让你的应用检测是否运行在一个低内存的设备上，并做相应的操作．clearApplicationUserData()可以用来清除应用的用户数据．<br>在一些特殊的使用场合，当一个app和它的任务栈交互时，这个app也许会使用内部类ActivityManager.AppTask和ActivityManager.RecentTaskInfo.然而，一般情况下，这些方法应该仅用来调试．<br>获得这个类的实例只能通过调用Context.getSystemService(Class)或者Context.getSystemService(Context.ACTIVITY_SERVICE)</p>
-<h1>Summary</h1>
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.AppTask 允许你去管理你自己应用的task</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.MemoryInfo 你可以通过getMemoryInfo(ActivityManager.MemoryInfo)访问内存信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.ProcessErrorStateInfo 你可以访问任何在error条件的进程</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RecentTaskInfo 你可以访问用户最近打开或者访问的task信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RunningAppProcessInfo 你可以访问一个正在运行的进程的信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RunningServiceInfo 你可以访问一个特定的正在系统在运行的Service的信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RunningTaskInfo 你可以访问一个特定的正在系统在运行的Task的信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.TaskDescription　你可以设置和访问当前Activity在recent task list里的信息</td>
-</tr>
-</tbody>
-</table>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"></div><div class="line">#可以用来减少工作量,请放在android-cts-media的根目录下</div><div class="line">echo <span class="string">"start copy media..."</span></div><div class="line"><span class="keyword">for</span> id in $@</div><div class="line"><span class="keyword">do</span></div><div class="line">&#123;</div><div class="line">	echo <span class="string">"copy media to $id"</span></div><div class="line">        source copy_media.sh all -s $id</div><div class="line">&#125; &amp;</div><div class="line">done</div><div class="line">wait</div><div class="line">echo <span class="string">"copy all success!!!!!!"</span></div><div class="line"></div><div class="line">echo <span class="string">"start test cts..."</span></div><div class="line">devices=<span class="string">""</span></div><div class="line">shardCount=<span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> deviceid in $@</div><div class="line"><span class="keyword">do</span></div><div class="line">	devices+=<span class="string">" -s $deviceid "</span></div><div class="line">	let <span class="string">"shardCount+=1"</span></div><div class="line">done</div><div class="line"></div><div class="line">#你自己的cts目录</div><div class="line">cd /home/rj7/cts/<span class="number">7.0</span>/r13/android-cts</div><div class="line">./tools/cts-tradefed run cts --shards $shardCount --skip-preconditions $devices</div></pre></td></tr></table></figure>
 
       
 
@@ -257,7 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Android源码分析</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
         		</li>
       		
 		</ul>
@@ -313,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/28/ActivityManager/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/CTS执行脚本/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +283,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/10/09/CTS执行脚本/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CTS执行脚本
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/28/AlarmManager分析与应用-AlarmManager和源码分析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AlarmManager分析与应用-AlarmManager和源码分析</div>
+    <a href="/2017/09/28/ActivityManager/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ActivityManager</div>
       <i class="icon-circle-right"></i>
     </a>
   

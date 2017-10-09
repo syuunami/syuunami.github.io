@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ActivityManager | potosu</title>
+  <title>Archives: 2017/10 | potosu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="public class ActivityManagerextends Objectjava.lang.Object↳android.app.ActivityManager这个类主要负责提供activities,services和包含的process的信息，并且与之交互．这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．大">
-<meta name="keywords" content="Android源码分析">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ActivityManager">
-<meta property="og:url" content="http://yoursite.com/2017/09/28/ActivityManager/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="potosu">
+<meta property="og:url" content="http://yoursite.com/archives/2017/10/index.html">
 <meta property="og:site_name" content="potosu">
-<meta property="og:description" content="public class ActivityManagerextends Objectjava.lang.Object↳android.app.ActivityManager这个类主要负责提供activities,services和包含的process的信息，并且与之交互．这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．大">
-<meta property="og:updated_time" content="2017-09-28T03:58:56.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ActivityManager">
-<meta name="twitter:description" content="public class ActivityManagerextends Objectjava.lang.Object↳android.app.ActivityManager这个类主要负责提供activities,services和包含的process的信息，并且与之交互．这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．大">
+<meta name="twitter:title" content="potosu">
   
     <link rel="alternative" href="/atom.xml" title="potosu" type="application/atom+xml">
   
@@ -158,236 +153,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ActivityManager" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      ActivityManager
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/10/09/CTS执行脚本/" class="archive-article-date">
+  	<time datetime="2017-10-09T01:04:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/10/09/CTS执行脚本/">CTS执行脚本</a>
     </h1>
   
 
-        
-        <a href="/2017/09/28/ActivityManager/" class="archive-article-date">
-  	<time datetime="2017-09-28T03:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>public class ActivityManager<br>extends Object<br>java.lang.Object<br>↳android.app.ActivityManager<br>这个类主要负责提供activities,services和包含的process的信息，并且与之交互．<br>这里面的一些方法是用来调试和提供目的信息的，它们不应该对你的app运行产生影响．这些在method的level文档中都有说明．<br>大多数应用开发者并不是必须要使用这个类．然而，有一小部分方法被广泛使用．举个例子，isLowRamDevice()可以让你的应用检测是否运行在一个低内存的设备上，并做相应的操作．clearApplicationUserData()可以用来清除应用的用户数据．<br>在一些特殊的使用场合，当一个app和它的任务栈交互时，这个app也许会使用内部类ActivityManager.AppTask和ActivityManager.RecentTaskInfo.然而，一般情况下，这些方法应该仅用来调试．<br>获得这个类的实例只能通过调用Context.getSystemService(Class)或者Context.getSystemService(Context.ACTIVITY_SERVICE)</p>
-<h1>Summary</h1>
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.AppTask 允许你去管理你自己应用的task</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.MemoryInfo 你可以通过getMemoryInfo(ActivityManager.MemoryInfo)访问内存信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.ProcessErrorStateInfo 你可以访问任何在error条件的进程</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RecentTaskInfo 你可以访问用户最近打开或者访问的task信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RunningAppProcessInfo 你可以访问一个正在运行的进程的信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RunningServiceInfo 你可以访问一个特定的正在系统在运行的Service的信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.RunningTaskInfo 你可以访问一个特定的正在系统在运行的Task的信息</td>
-</tr>
-<tr>
-<td style="text-align:left">class</td>
-<td style="text-align:left">ActivityManager.TaskDescription　你可以设置和访问当前Activity在recent task list里的信息</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Android源码分析</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/28/ActivityManager/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/10/09/CTS执行脚本/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CTS执行脚本
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/09/28/AlarmManager分析与应用-AlarmManager和源码分析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AlarmManager分析与应用-AlarmManager和源码分析</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'syuunami-com'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
-  
-
-  
+    
 
 
           </div>
@@ -410,8 +229,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
