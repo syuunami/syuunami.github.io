@@ -155,6 +155,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-计算机术语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/计算机术语/">计算机术语</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/09/计算机术语/" class="archive-article-date">
+  	<time datetime="2017-10-09T01:28:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>|word|description|<br>|：—–|：—–|<br>|OOP|Object-oriented Programming面向对象编程|</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">单词</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/09/计算机术语/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CTS执行脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1380,85 +1454,10 @@
 
 
   
-    <article id="post-SystemUI和NavigationBar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/28/SystemUI和NavigationBar/">SystemUI和NavigationBar</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/28/SystemUI和NavigationBar/" class="archive-article-date">
-  	<time datetime="2017-09-28T02:32:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前人栽树，后人乘凉:<br><a href="http://www.jianshu.com/p/0ab1279465fa" target="_blank">1.SystemUI启动流程及主体布局介绍</a><br><a href="https://guolei1130.github.io/2017/01/07/SystemServer%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/" target="_blank">2.SystemServer进程的初始化</a></p>
-<p></p><h3>启动</h3><hr><br>我相信作为一个Android程序员，大家一定对Context的getSystemService方法无比熟悉了，那么大家知道调用这个法的时候，系统都做了哪些工作吗？别急，我们先聊聊Android系统的启动流程.<p></p>
-<p>Android启动后，init.rc将启动Zygote,Zygote再启动SystemServer.我们来看下SystemServer:(此处说明下，本篇博客基本是本人自己的一个读书笔记，所以可能有些地方跟标题内容不太吻合，有些地方过于深入，以后会慢慢整理的)</p>
-<p>很久没有在Android代码中看到main函数啦．它会调用SystemServer类自身的run()方法．run方法中比较关键性的代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//frameworks/base/services/java/com/android/server/SystemServer.java</span></div><div class="line">startBootstrapServices();</div><div class="line">startCoreServices();</div><div class="line">startOtherServices();</div></pre></td></tr></table></figure>
-<p>startBootstrapServices():等待intalld进程去结束start up,以便让它以恰当的权限去创建关键性的目录，比如/data，/user等．在初始化其它Service之前，我们需要让它执行完.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Android源码分析</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/28/SystemUI和NavigationBar/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1561,6 +1560,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">单词</a>
               </li>
              
               <li class="article-tag-list-item">

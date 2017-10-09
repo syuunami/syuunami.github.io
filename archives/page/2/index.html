@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>AlarmManager分析与应用-AlarmManager和源码分析 | potosu</title>
+  <title>Archives | potosu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="/frameworks/base/core/java/android/app/AlarmManager.java看一个类，首先当然是从它的构造器开始往下看．AlarmManager的构造器很简单1234567AlarmManager(IAlarmManager service, Context ctx) &amp;#123;    mService = service;    mPackageName =">
-<meta name="keywords" content="Android源码分析">
-<meta property="og:type" content="article">
-<meta property="og:title" content="AlarmManager分析与应用-AlarmManager和源码分析">
-<meta property="og:url" content="http://yoursite.com/2017/09/28/AlarmManager分析与应用-AlarmManager和源码分析/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="potosu">
+<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
 <meta property="og:site_name" content="potosu">
-<meta property="og:description" content="/frameworks/base/core/java/android/app/AlarmManager.java看一个类，首先当然是从它的构造器开始往下看．AlarmManager的构造器很简单1234567AlarmManager(IAlarmManager service, Context ctx) &amp;#123;    mService = service;    mPackageName =">
-<meta property="og:updated_time" content="2017-09-28T03:56:12.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AlarmManager分析与应用-AlarmManager和源码分析">
-<meta name="twitter:description" content="/frameworks/base/core/java/android/app/AlarmManager.java看一个类，首先当然是从它的构造器开始往下看．AlarmManager的构造器很简单1234567AlarmManager(IAlarmManager service, Context ctx) &amp;#123;    mService = service;    mPackageName =">
+<meta name="twitter:title" content="potosu">
   
     <link rel="alternative" href="/atom.xml" title="potosu" type="application/atom+xml">
   
@@ -158,65 +153,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AlarmManager分析与应用-AlarmManager和源码分析" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      AlarmManager分析与应用-AlarmManager和源码分析
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/09/28/SystemUI和NavigationBar/" class="archive-article-date">
+  	<time datetime="2017-09-28T02:32:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/28/SystemUI和NavigationBar/">SystemUI和NavigationBar</a>
     </h1>
   
 
-        
-        <a href="/2017/09/28/AlarmManager分析与应用-AlarmManager和源码分析/" class="archive-article-date">
-  	<time datetime="2017-09-28T03:51:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>/frameworks/base/core/java/android/app/AlarmManager.java<br>看一个类，首先当然是从它的构造器开始往下看．AlarmManager的构造器很简单<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">AlarmManager(IAlarmManager service, Context ctx) &#123;</div><div class="line">    mService = service;</div><div class="line">    mPackageName = ctx.getPackageName();<span class="comment">//获取调用者的包名</span></div><div class="line">    mTargetSdkVersion = ctx.getApplicationInfo().targetSdkVersion;<span class="comment">//获取应用的targetSdkVersion</span></div><div class="line">    mAlwaysExact = (mTargetSdkVersion &lt; Build.VERSION_CODES.KITKAT);<span class="comment">//对于API19之前的应用，alarm都是精确的</span></div><div class="line">    mMainThreadHandler = <span class="keyword">new</span> Handler(ctx.getMainLooper());<span class="comment">//获取应用的MainLooper，这个之前看过api的都知道是为了OnAlarmListener做准备</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>还有个问题，mService是什么东西呢？<br>关于SystemServer,AlarmManager和AlarmManagerServer这三者的关系，可以看看我的另外一篇博文．这里就简述一下过程了．系统启动时会调用initrc进程，启动SystemServer.在SystemServer中启动了AlarmManagerService.当开发者调用Context.getSystemService(AlarmManager.class)的时候，会在SystemServiceRegistry中会去new一个AlarmManager:<br>SystemServiceRegistry中会去new一个AlarmManager:<br>/frameworks/base/core/java/android/app/SystemServiceRegistry.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> AlarmManager <span class="title">createService</span><span class="params">(ContextImpl ctx)</span> </span>&#123;</div><div class="line">    IBinder b = ServiceManager.getService(Context.ALARM_SERVICE);</div><div class="line">    IAlarmManager service = IAlarmManager.Stub.asInterface(b);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AlarmManager(service, ctx);</div><div class="line">&#125;&#125;);</div></pre></td></tr></table></figure>
-<p>学习过AIDL模型的同学现在应该能看出来mService其实就是AlarmManagerService里的一个IBinder对象了．先不管AMS里到底做了什么，我们继续往下看AlarmManager的其他方法．<br>首先是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">legacyExactLength</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (mAlwaysExact ? WINDOW_EXACT : WINDOW_HEURISTIC);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这个很简单，根据mAlwaysExact，其实也就是调用者的API level去判断，是返回WINDOW_EXACT(0)还是WINDOW_HEURISTIC(-1)<br>接着往下拖动．我们发现啊，以下几个方法的原理都是一样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, String tag, OnAlarmListener listener,</span></span></div><div class="line"><span class="function"><span class="params">            Handler targetHandler)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRepeating</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">long</span> intervalMillis, PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWindow</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> windowStartMillis, <span class="keyword">long</span> windowLengthMillis,</span></span></div><div class="line"><span class="function"><span class="params">            PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWindow</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> windowStartMillis, <span class="keyword">long</span> windowLengthMillis,</span></span></div><div class="line"><span class="function"><span class="params">            String tag, OnAlarmListener listener, Handler targetHandler)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExact</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExact</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, String tag, OnAlarmListener listener,</span></span></div><div class="line"><span class="function"><span class="params">            Handler targetHandler)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIdleUntil</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, String tag, OnAlarmListener listener,</span></span></div><div class="line"><span class="function"><span class="params">            Handler targetHandler)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAlarmClock</span><span class="params">(AlarmClockInfo info, PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, <span class="keyword">long</span> windowMillis, <span class="keyword">long</span> intervalMillis,</span></span></div><div class="line"><span class="function"><span class="params">            PendingIntent operation, WorkSource workSource)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, <span class="keyword">long</span> windowMillis, <span class="keyword">long</span> intervalMillis,</span></span></div><div class="line"><span class="function"><span class="params">            String tag, OnAlarmListener listener, Handler targetHandler, WorkSource workSource)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, <span class="keyword">long</span> windowMillis, <span class="keyword">long</span> intervalMillis,</span></span></div><div class="line"><span class="function"><span class="params">            OnAlarmListener listener, Handler targetHandler, WorkSource workSource)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInexactRepeating</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">long</span> intervalMillis, PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAndAllowWhileIdle</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, PendingIntent operation)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExactAndAllowWhileIdle</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, PendingIntent operation)</span></span></div></pre></td></tr></table></figure>
-<p>这些方法都是调用了私有成员方法setImpl,只是传入的参数不同罢了．<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setImpl</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, <span class="keyword">long</span> windowMillis, <span class="keyword">long</span> intervalMillis,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">int</span> flags, PendingIntent operation, <span class="keyword">final</span> OnAlarmListener listener, String listenerTag,</span></span></div><div class="line"><span class="function"><span class="params">            Handler targetHandler, WorkSource workSource, AlarmClockInfo alarmClock)</span></span></div></pre></td></tr></table></figure></p>
-<p>怎么样，是不是瞬间松了一口气？<br>那么我们就来看看setImpl都做了哪些工作．</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setImpl</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtMillis, <span class="keyword">long</span> windowMillis, <span class="keyword">long</span> intervalMillis,</span></span></div><div class="line"><span class="function"><span class="params">        <span class="keyword">int</span> flags, PendingIntent operation, <span class="keyword">final</span> OnAlarmListener listener, String listenerTag,</span></span></div><div class="line"><span class="function"><span class="params">        Handler targetHandler, WorkSource workSource, AlarmClockInfo alarmClock)</span> </span>&#123;</div><div class="line">    <span class="comment">//对于triggerAtMillis &lt; 0的设置为0</span></div><div class="line">    <span class="keyword">if</span> (triggerAtMillis &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">/* NOTYET</span></div><div class="line"><span class="comment">        if (mAlwaysExact) &#123;</span></div><div class="line"><span class="comment">            // Fatal error for KLP+ apps to use negative trigger times</span></div><div class="line"><span class="comment">            throw new IllegalArgumentException("Invalid alarm trigger time "</span></div><div class="line"><span class="comment">                    + triggerAtMillis);</span></div><div class="line"><span class="comment">        &#125;</span></div><div class="line"><span class="comment">        */</span></div><div class="line">        triggerAtMillis = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//ListenerWrapper初始化</span></div><div class="line">    ListenerWrapper recipientWrapper = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span> (listener != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">synchronized</span> (AlarmManager.class) &#123;</div><div class="line">            <span class="keyword">if</span> (sWrappers == <span class="keyword">null</span>) &#123;</div><div class="line">                sWrappers = <span class="keyword">new</span> ArrayMap&lt;OnAlarmListener, ListenerWrapper&gt;();</div><div class="line">            &#125;</div><div class="line">            recipientWrapper = sWrappers.get(listener);</div><div class="line">            <span class="comment">// no existing wrapper =&gt; build a new one</span></div><div class="line">            <span class="keyword">if</span> (recipientWrapper == <span class="keyword">null</span>) &#123;</div><div class="line">                recipientWrapper = <span class="keyword">new</span> ListenerWrapper(listener);</div><div class="line">                sWrappers.put(listener, recipientWrapper);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">final</span> Handler handler = (targetHandler != <span class="keyword">null</span>) ? targetHandler : mMainThreadHandler;</div><div class="line">        recipientWrapper.setHandler(handler);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用AMS中的IAlarmManager的set方法</span></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        mService.set(mPackageName, type, triggerAtMillis, windowMillis, intervalMillis, flags,</div><div class="line">                operation, recipientWrapper, listenerTag, workSource, alarmClock);</div><div class="line">    &#125; <span class="keyword">catch</span> (RemoteException ex) &#123;</div><div class="line">        <span class="keyword">throw</span> ex.rethrowFromSystemServer();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>ListenerWrapper是AlarmManager中的一个内部类，是OnAlarmListener的包装器．暂时先不管它，我们看看ALMS(AlarmManagerService)中IAlarmManager的set方法都做了啥:<br>/frameworks/base/services/core/java/com/android/server/AlarmManagerService.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> IBinder mService = <span class="keyword">new</span> IAlarmManager.Stub() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String callingPackage,</span></span></div><div class="line"><span class="function"><span class="params">                <span class="keyword">int</span> type, <span class="keyword">long</span> triggerAtTime, <span class="keyword">long</span> windowLength, <span class="keyword">long</span> interval, <span class="keyword">int</span> flags,</span></span></div><div class="line"><span class="function"><span class="params">                PendingIntent operation, IAlarmListener directReceiver, String listenerTag,</span></span></div><div class="line"><span class="function"><span class="params">                WorkSource workSource, AlarmManager.AlarmClockInfo alarmClock)</span> </span>&#123;</div><div class="line">            <span class="keyword">final</span> <span class="keyword">int</span> callingUid = Binder.getCallingUid();</div><div class="line">            <span class="comment">// make sure the caller is not lying about which package should be blamed for</span></div><div class="line">            <span class="comment">// wakelock time spent in alarm delivery</span></div><div class="line">            mAppOps.checkPackage(callingUid, callingPackage);</div><div class="line">            <span class="comment">// 重复的alarm必须使用PendingIntent,不能使用OnAlarmListener</span></div><div class="line">            <span class="keyword">if</span> (interval != <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (directReceiver != <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Repeating alarms cannot use AlarmReceivers"</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//如果workSource不为null,检查是否有UPDATE_DEVICE_STATS权限</span></div><div class="line">            <span class="keyword">if</span> (workSource != <span class="keyword">null</span>) &#123;</div><div class="line">                getContext().enforcePermission(</div><div class="line">                        android.Manifest.permission.UPDATE_DEVICE_STATS,</div><div class="line">                        Binder.getCallingPid(), callingUid, <span class="string">"AlarmManager.set"</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 先不处理WAKE_FROM_IDLE或者ALLOW_WHILE_IDLE_UNRESTRICTED的alarm,稍后恰当时候会处理．</span></div><div class="line">            flags &amp;= ~(AlarmManager.FLAG_WAKE_FROM_IDLE</div><div class="line">                    | AlarmManager.FLAG_ALLOW_WHILE_IDLE_UNRESTRICTED);</div><div class="line">            <span class="comment">//只有系统可以使用FLAG_IDLE_UNTIL--它用来告诉AlarmManager什么时候退出IDLE模式，只会被DeviceIdleController使用．</span></div><div class="line">            <span class="keyword">if</span> (callingUid != Process.SYSTEM_UID) &#123;</div><div class="line">                flags &amp;= ~AlarmManager.FLAG_IDLE_UNTIL;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 如果是精确alarm,则它不可以和其他alarm批量处理</span></div><div class="line">            <span class="keyword">if</span> (windowLength == AlarmManager.WINDOW_EXACT) &#123;</div><div class="line">                flags |= AlarmManager.FLAG_STANDALONE;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//如果alarm是一个闹铃，那它必须独立而且如果需要的话，会提前从IDLE中唤醒．</span></div><div class="line">            <span class="keyword">if</span> (alarmClock != <span class="keyword">null</span>) &#123;</div><div class="line">                flags |= AlarmManager.FLAG_WAKE_FROM_IDLE | AlarmManager.FLAG_STANDALONE;</div><div class="line">            <span class="comment">// If the caller is a core system component or on the user's whitelist, and not calling</span></div><div class="line">            <span class="comment">// to do work on behalf of someone else, then always set ALLOW_WHILE_IDLE_UNRESTRICTED.</span></div><div class="line">            <span class="comment">// This means we will allow these alarms to go off as normal even while idle, with no</span></div><div class="line">            <span class="comment">// timing restrictions.</span></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (workSource == <span class="keyword">null</span> &amp;&amp; (callingUid &lt; Process.FIRST_APPLICATION_UID</div><div class="line">                    || Arrays.binarySearch(mDeviceIdleUserWhitelist,</div><div class="line">                            UserHandle.getAppId(callingUid)) &gt;= <span class="number">0</span>)) &#123;</div><div class="line">                flags |= AlarmManager.FLAG_ALLOW_WHILE_IDLE_UNRESTRICTED;</div><div class="line">                flags &amp;= ~AlarmManager.FLAG_ALLOW_WHILE_IDLE;</div><div class="line">            &#125;</div><div class="line">            setImpl(type, triggerAtTime, windowLength, interval, operation, directReceiver,</div><div class="line">                    listenerTag, flags, workSource, alarmClock, callingUid, callingPackage);</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -228,130 +194,22 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/28/AlarmManager分析与应用-AlarmManager和源码分析/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/09/28/ActivityManager/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ActivityManager
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/09/28/AlarmManager分析与应用-SystemClock/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AlarmManager分析与应用----SystemClock</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'syuunami-com'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -375,8 +233,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
