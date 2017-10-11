@@ -183,7 +183,6 @@
 <li><p>Java使用的是动态内存分配，在堆中动态地创建对象。因为存储时间实在运行时被动管理的，所以需要大量的时间在堆中分配存储空间，这可能要远远大于在堆栈中创建存储空间的时间。new出来的对象都是存储在堆中的，基本数据类型变量和对象的引用放在栈中。静态域存放静态成员，常量池存放字符串常量和基本类型常量。</p>
 </li>
 </ul>
-<p><hr></p>
 <h3>第2章  一切都是对象</h3>
 
 <table>
@@ -262,6 +261,7 @@
 </tr>
 </tbody>
 </table>
+<h3>第3章  操作符</h3>
 
       
 
@@ -371,6 +371,14 @@
 <tr>
 <td style="text-align:left">generic</td>
 <td style="text-align:left">泛化</td>
+</tr>
+<tr>
+<td style="text-align:left">STL</td>
+<td style="text-align:left">Stardard Template Libaray 标准模板类库</td>
+</tr>
+<tr>
+<td style="text-align:left">VCL</td>
+<td style="text-align:left">Visual Component Libaray 可视化构件库</td>
 </tr>
 </tbody>
 </table>
@@ -1524,6 +1532,7 @@
 <p>4.关于Parcelable和Serializable<br>Parcelable对象如果使用ObjectOutputStream或者ObjectInputStream会报NotSerializableException．如果Serializable对象不使用out.writeObject(obj)直接使用in.readObject()的话会报EOFException,另外transient对Parcelable无效</p>
 <p>5.IllegalArgumentException: Service Intent must be explicit<br>这是因为Android5.0中service的intent一定要显式声明，这样绑定的时候不会出错.<br>解决方案:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Intent <span class="title">createExplicitFromImplicitIntent</span><span class="params">(Context context, Intent implicitIntent)</span></span>&#123;</div><div class="line">    PackageManager packageManager = context.getPackageManager();</div><div class="line">    List&lt;ResolveInfo&gt; resolveInfo = packageManager.queryIntentServices(implicitIntent);</div><div class="line">    <span class="keyword">if</span>(resolveInfo == <span class="keyword">null</span> || resolveInfo.size() != <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    ResolveInfo info = resolveInfo.get(<span class="number">0</span>);</div><div class="line">    String packageName = info.serviceInfo.packageName;</div><div class="line">    String className = info.serviceInfo.name;</div><div class="line">    ComponentName component = <span class="keyword">new</span> ComponentName(packageName, className);</div><div class="line">    Intent explicitIntent = <span class="keyword">new</span> Intent(implicitIntent);</div><div class="line">    explicitIntent.setComponent(component);</div><div class="line">    <span class="keyword">return</span> explicitIntent;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>6.设置android:process=”:xxx”的组件无法打印Log?请将AS中”Show Only Selected Application”改为”No Filters”</p>
+<p>7.ListView里的List不能重新设置个新的，否则会导致adapter的notifyDataChanged无效。</p>
 
       
 
