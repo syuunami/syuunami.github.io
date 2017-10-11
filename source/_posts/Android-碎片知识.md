@@ -54,3 +54,5 @@ public Intent createExplicitFromImplicitIntent(Context context, Intent implicitI
 }
 ```
 6.设置android:process=”:xxx”的组件无法打印Log?请将AS中”Show Only Selected Application”改为”No Filters”
+
+7.ListView里的List不能重新设置个新的，否则会导致adapter的notifyDataChanged无效。
